@@ -12,7 +12,7 @@ int main(int argc, const char* argv[]){
 
     writeChunk(&chunk, OP_RETURN, 163);
     
-    writeChunk(&chunk, OP_RETURN, 300);
+    writeChunk(&chunk, 4, 300);
     writeChunk(&chunk, OP_RETURN, 300);
     
     disassembleChunk(&chunk, "test chunk");

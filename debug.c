@@ -12,6 +12,20 @@ void disassembleChunk(Chunk* chunk, const char* name) {
     }
 }
 
+static int getLine(Chunk* chunk, uint16_t offset) {
+    uint16_t count = 0;
+    int lineArrOffset = 0;
+    while (1)
+    {
+
+        count += chunk->lines[lineArrOffset];
+        lineArrOffset+=2;
+        if (count >= offset) {
+            return chunk->lines[lineArrOffset+1];
+        }
+    }
+}
+
 static int simpleInstruction(const char* name, int offset, int* lineCount) {
     printf("%s\n", name);
     *lineCount+=1;
@@ -50,7 +64,8 @@ int disassembleInstruction(Chunk* chunk, int offset, int* lineCount, int* lineNu
             return simpleInstruction("OP_RETURN", offset, lineCount);
         default:
             printf("Unkown opcode %d \n", instruction);
-            return EXIT_FAILURE;
+            printf("%04d", getLine(chunk, offset));
+            exit(EXIT_FAILURE);
     }
 }
 
