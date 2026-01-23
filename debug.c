@@ -60,11 +60,12 @@ int disassembleInstruction(Chunk* chunk, int offset, int* lineCount, int* lineNu
     switch (instruction) {
         case OP_CONSTANT:
             return constantInstruction("OP_CONSTANT", chunk, offset, lineCount);
-        case OP_RETURN:
+	case OP_NEGATE:
+	    return simpleInstruction("OP_NEGATE", offset, lineCount);
+	case OP_RETURN:
             return simpleInstruction("OP_RETURN", offset, lineCount);
         default:
             printf("Unkown opcode %d \n", instruction);
-            printf("%04d", getLine(chunk, offset));
             exit(EXIT_FAILURE);
     }
 }
