@@ -60,6 +60,14 @@ int disassembleInstruction(Chunk* chunk, int offset, int* lineCount, int* lineNu
     switch (instruction) {
         case OP_CONSTANT:
             return constantInstruction("OP_CONSTANT", chunk, offset, lineCount);
+	case OP_ADD:
+	    return simpleInstruction("OP_ADD", offset, lineCount);
+	case OP_SUBTRACT:
+	    return simpleInstruction("OP_SUBTRACT", offset, lineCount);
+	case OP_MULTIPLY:
+	    return simpleInstruction("OP_MULTIPLY", offset, lineCount);
+	case OP_DIVIDE:
+	    return simpleInstruction("OP_DIVIDE", offset, lineCount);
 	case OP_NEGATE:
 	    return simpleInstruction("OP_NEGATE", offset, lineCount);
 	case OP_RETURN:
