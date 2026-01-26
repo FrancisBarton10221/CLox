@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 #include "common.h"
+#include "memory.h"
 #include "debug.h"
 #include "vm.h"
+#include "value.h"
 
 VM vm;
 
@@ -11,10 +13,17 @@ static void resetStack() {
 }
 
 void initVM() {
+    vm.stack = GROW_ARRAY(Value, vm.stack, 0, 5);
+    vm.stackSize = 5;
+    printf("Stack size: %d\n", vm.stackSize);
+    printf("Stack lower: %d\n", vm.stack);
+    printf("Stack upper: %d\n", vm.stack + vm.stackSize * sizeof(Value));
     resetStack();
+    printf("stackTop: %d\n", vm.stackTop);
 }
 
 void freeVM() {
+    FREE_ARRAY(Value, vm.stack, vm.stackSize); 
     resetStack();
 }
 
@@ -22,8 +31,17 @@ void push(Value value) {
     if (vm.stackTop == NULL) {
 	printf("stackTop is null");
     }
+    if (vm.stackTop == vm.stackSize + vm.stack) {
+	printf("Stack bounds reached!\n");
+	int stackTopOffset = vm.stackTop - vm.stack;
+	vm.stack = GROW_ARRAY(Value, vm.stack, vm.stackSize, vm.stackSize * 2);
+	vm.stackSize *= 2;
+	vm.stackTop = stackTopOffset + vm.stack;
+	printf("New size: %d\n", vm.stackSize);
+    }
     *vm.stackTop = value;
     vm.stackTop++;
+    printf("stackTop: %d\n", vm.stackTop);
 }
 
 Value pop() {
