@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 
 #include "common.h"
@@ -8,6 +9,7 @@ typedef struct {
     const char* start;
     const char* current;
     int line;
+    bool fString;
 } Scanner;
 
 Scanner scanner;
@@ -16,6 +18,7 @@ void initScanner(const char* source) {
     scanner.start = source;
     scanner.current = source;
     scanner.line = 1;
+    scanner.fString = false;
 }
 
 static bool isAlpha(char c) {
@@ -179,11 +182,14 @@ Token scanToken() {
     skipWhitespace();
     scanner.start = scanner.current;
 
-    int i = 0;
-
     if (isAtEnd()) return makeToken(TOKEN_EOF);
     
     char c = advance();
+
+    if (scanner.fString == false && peek() == 'f') {
+	scanner.fString = true;
+    }
+
     if (isAlpha(c)) return identifier();
     if (isDigit(c)) return number();
     

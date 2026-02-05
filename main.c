@@ -71,7 +71,7 @@ int main(int argc, const char* argv[]){
 	runFile(argv[1]);
     }
     else {
-	fprintf(stderr, "Ussage: ckix [path]\n");
+	fprintf(stderr, "Usage: clox [path]\n");
 	exit(64);
     }
     
