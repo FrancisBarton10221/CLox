@@ -10,7 +10,7 @@ Nystrom implements a pratt parser and I have chosen to follow in his steps with 
 This function evaluates the precedence of it's argument and compares it to the precedence of the infix operator to it's right. If it evauluates true then the infix
 operator is called, the operation is performed and parsePrecedence() is called again. Otherwise the loop breaks and if parsePrecedence() is called from a binary operation, 
 the operation occurs without calling another operation.
-To understand how a Pratt Parser works it is best to think about how it would appear as a list of bytecode instructions and how they would interact with the stack stack.
+To understand how a Pratt Parser works it is best to think about how it would appear as a list of bytecode instructions and how they would interact with the stack.
 ## Virtual Machine
 ## Garbage collector.
 
