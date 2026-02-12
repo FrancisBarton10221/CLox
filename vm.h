@@ -12,6 +12,7 @@ typedef struct {
     Value* stack;
     int stackSize;
     Value* stackTop;
+    Obj* objects;
 } VM;
 
 typedef enum {
@@ -20,6 +21,8 @@ typedef enum {
     INTERPRET_RUNTIME_ERROR
 } InterpretResult;
 
+extern VM vm;
+
 void initVM();
 void freeVM();
 InterpretResult interpret(const char* source);
@@ -27,5 +30,3 @@ void push(Value value);
 Value pop();
 
 #endif
-
-

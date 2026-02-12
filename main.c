@@ -75,25 +75,6 @@ int main(int argc, const char* argv[]){
 	exit(64);
     }
     
-
-
-    /*
-    Chunk chunk;
-    initChunk(&chunk); 
-    for (int i = 0; i < 25; i++) {
-	int constant = addConstant(&chunk, 1.2);
-	writeChunk(&chunk, OP_CONSTANT, 12);
-	writeChunk(&chunk, constant, 12);
-    }
-
-    writeChunk(&chunk, OP_RETURN, 123);    
-    
-    interpret(&chunk);
-
-    freeVM();
-    freeChunk(&chunk);
-    */
-
     return 0;
     
 }
