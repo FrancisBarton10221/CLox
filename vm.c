@@ -36,9 +36,11 @@ void initVM() {
     vm.stackSize = 5;
     resetStack();
     vm.objects = NULL;
+    initTable(&vm.strings);
 }
 
 void freeVM() {
+    freeTable(&vm.strings);
     freeObjects();
     FREE_ARRAY(Value, vm.stack, vm.stackSize); 
     resetStack();
