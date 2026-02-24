@@ -66,6 +66,10 @@ int disassembleInstruction(Chunk* chunk, int offset, int* lineCount, int* lineNu
 	    return simpleInstruction("OP_TRUE", offset, lineCount); 
 	case OP_FALSE:	
 	    return simpleInstruction("OP_FALSE", offset, lineCount);
+	case OP_DEFINE_GLOBAL:
+	    return constantInstruction("OP_DEFINE_GLOBAL", chunk, offset, lineCount);
+	case OP_SET_GLOBAL:
+	    return constantInstruction("OP_SET_GLOBAL", chunk, offset, lineCount);
 	case OP_EQUAL:
 	    return simpleInstruction("OP_EQUAL", offset, lineCount);
 	case OP_GREATER:
