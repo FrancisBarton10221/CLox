@@ -18,6 +18,8 @@ static void repl() {
 	}	    
     
 	interpret(line);
+
+	memset(line, 0, 1024);
     }
 }
 

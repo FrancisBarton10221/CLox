@@ -32,7 +32,6 @@ ObjString* allocateString(const char* chars, int length) {
     uint32_t hash = hashString(chars, length);
     ObjString* interned = tableFindString(&vm.strings, chars, length, hash);
     if (interned != NULL) return interned;
-    printf("Debug");
     ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING, length);
     string->length = length;
     memcpy(&string->chars, chars, length);

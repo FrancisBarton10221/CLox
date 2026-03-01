@@ -57,7 +57,12 @@ int disassembleInstruction(Chunk* chunk, int offset, int* lineCount, int* lineNu
     }
 
     uint8_t instruction = chunk->code[offset];
+    //printf("%d", instruction);
     switch (instruction) {
+	case OP_PRINT:
+	    return simpleInstruction("OP_PRINT", offset, lineCount);
+	case OP_POP:
+	    return simpleInstruction("OP_POP", offset, lineCount);
         case OP_CONSTANT:
             return constantInstruction("OP_CONSTANT", chunk, offset, lineCount);
 	case OP_NIL:
